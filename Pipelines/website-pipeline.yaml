@@ -1,0 +1,49 @@
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+variables:
+  buildConfiguration: 'Release'
+  projects: |
+    Barcode128c.Web/Barcode128c.Web.csproj
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'install .NET Core SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.x'
+      includePreviewVersions: true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build'
+    inputs:
+      command: 'build'
+      arguments: --configuration $(buildConfiguration)
+      projects: $(projects)
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish'
+    inputs:
+      command: 'publish'
+      publishWebProjects: false
+      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: false
+
+  - script: |
+      find $(build.ArtifactStagingDirectory) -type f
+    displayName: 'print Build.ArtifactStagingDirectory'
+
+  - script: |
+      sed -i 's|href="/"|href="/barcode-128c/"|g' $(build.ArtifactStagingDirectory)/wwwroot/index.html
+    displayName: 'insert base to index.html for the sub route version'
+
+  - task: CopyFilesOverSSH@0
+    displayName: 'deploy to VM'
+    inputs:
+      sshEndpoint: $(connectionToDroplet)
+      sourceFolder: '$(build.ArtifactStagingDirectory)/wwwroot'
+      contents: '**'
+      targetFolder: '/var/www/$(appPath)'
+      cleanTargetFolder: true

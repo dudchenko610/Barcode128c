@@ -1,0 +1,18 @@
+.barcode-128с-container {
+    width: 100%;
+    /*max-width: 300px;*/
+    aspect-ratio: 4 / 1;
+    display: flex;
+}
+
+.barcode-128с-container > .unit-line {
+    height: 100%;
+}
+
+.barcode-128с-container > .unit-line.black {
+    background: black;
+}
+
+.barcode-128с-container > .unit-line.white {
+    background: white;
+}

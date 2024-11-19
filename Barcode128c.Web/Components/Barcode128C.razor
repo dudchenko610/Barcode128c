@@ -1,0 +1,12 @@
+<div class="barcode-128с-container">
+    @if (!string.IsNullOrEmpty(BarcodeSequence)) {
+        var unitWidth = 100.0f / BarcodeSequence.Length;
+        var groupedPairs = GroupBySymbolSequence(BarcodeSequence);
+
+        foreach (var pair in groupedPairs)
+        {
+            <div class="unit-line @(pair.Symbol == '0' ? "white" : "black")" 
+                 style="width: @((unitWidth * pair.Count).ToString(CultureInfo.InvariantCulture))%"></div>
+        }
+    }
+</div>

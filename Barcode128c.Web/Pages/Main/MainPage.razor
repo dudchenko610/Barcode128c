@@ -1,0 +1,19 @@
+@page "/"
+@using Barcode128c.Web.Components
+
+<div class="page-container">
+    <div class="inner-container">
+        <div class="barcode-container">
+            <div class="barcode">
+                <Barcode128C BarcodeSequence="@_barcodeSequence"/>
+            </div>
+            <div class="form">
+                <input @bind-value="@_barcodeText"
+                       placeholder="Type number here"
+                       @bind-value:event="oninput"/>
+
+                <button @onclick="GenerateBarcode">Generate Barcode</button>
+            </div>
+        </div>
+    </div>
+</div>

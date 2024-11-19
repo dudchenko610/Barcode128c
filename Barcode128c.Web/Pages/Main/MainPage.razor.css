@@ -1,0 +1,98 @@
+.page-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(img/background-image.jpg);
+}
+
+.page-container > .inner-container {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 300px;
+    padding-top: 15px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+.page-container > .inner-container > .barcode-container {
+    width: 100%;
+    height: 100%;
+    padding-block: 15px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-container > .inner-container > .barcode-container > .barcode {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.page-container > .inner-container > .barcode-container > .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-inline: 15px;
+}
+
+.page-container > .inner-container > .barcode-container > .form > button {
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    height: 47px;
+    background: #FAFAFA;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    font-family: 'Product Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 32px;
+    color: #292D32;
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+input:focus,
+input:focus-within,
+input:focus-visible,
+input:focus,
+input:focus-within,
+input:focus-visible {
+    outline: none;
+}
+
+button {
+    background: #5DB276;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 10px 24px;
+    border: none;
+}
